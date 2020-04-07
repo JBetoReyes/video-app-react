@@ -20,17 +20,26 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      use: {
-        loader: 'awesome-typescript-loader',
-      }
-    }]
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: {
+          loader: 'awesome-typescript-loader',
+        },
+      },
+    ],
   },
   devServer: {
     host: '0.0.0.0',
     hot: true,
     open: true,
-    port: 9000
+    port: 9000,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 0,
+      name: 'commons',
+    },
   },
 };
