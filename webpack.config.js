@@ -2,6 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -18,6 +19,9 @@ module.exports = {
       template: 'public/index.html',
       filename: 'index.html',
     }),
+    new MiniCssExtractPlugin({
+      filename: 'assets/[name].css',
+    }),
   ],
   module: {
     rules: [
@@ -29,7 +33,13 @@ module.exports = {
       },
       {
         test: /\.(s+)css?$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
