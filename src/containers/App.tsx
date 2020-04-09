@@ -4,14 +4,15 @@ import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Categories from '../components/Categories';
-import '../assets/styles/App.scss';
+import Footer from '../components/Footer';
+import '../assets/styles/containers/App.scss';
 
 const App = () => {
   return (
     <div className="App">
       <Header />
       <Search />
-      <Categories>
+      <Categories title="My List">
         <Carousel>
           <CarouselItem />
           <CarouselItem />
@@ -19,6 +20,23 @@ const App = () => {
           <CarouselItem />
         </Carousel>
       </Categories>
+      <Categories title="Tendencies">
+        <Carousel>
+          <CarouselItem />
+          <CarouselItem />
+          <CarouselItem />
+          <CarouselItem />
+        </Carousel>
+      </Categories>
+      <Categories title="Originals">
+        <Carousel>
+          <CarouselItem />
+          <CarouselItem />
+          <CarouselItem />
+          <CarouselItem />
+        </Carousel>
+      </Categories>
+      <Footer />
     </div>
   );
 };
