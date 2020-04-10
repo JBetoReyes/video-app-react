@@ -1,9 +1,7 @@
 import React from 'react';
-import Header from '../components/Header';
 import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import Categories from '../components/Categories';
-import Footer from '../components/Footer';
 import CarouselItem, {
   MyProps as CarouselItemProps,
 } from '../components/CarouselItem';
@@ -34,8 +32,7 @@ const renderList = (data: HomeState, keyName: string) => {
 const Home = () => {
   const videos = useInitialState(API);
   return (
-    <div className="App">
-      <Header />
+    <>
       <Search />
       {videos.mylist && videos.mylist.length && (
         <Categories title="My List">
@@ -48,8 +45,7 @@ const Home = () => {
       <Categories title="Originals">
         <Carousel>{renderList(videos, 'originals')}</Carousel>
       </Categories>
-      <Footer />
-    </div>
+    </>
   );
 };
 
