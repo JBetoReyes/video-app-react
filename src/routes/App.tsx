@@ -7,16 +7,16 @@ import NotFound from '../containers/NotFound';
 import Layout from '../containers/Layout';
 
 const App = () => (
-  <Layout>
-    <BrowserRouter>
+  <BrowserRouter>
+    <Layout>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/Register" component={Register} />
         <Route component={NotFound} key="error404" />
       </Switch>
-    </BrowserRouter>
-  </Layout>
+    </Layout>
+  </BrowserRouter>
 );
 
 export default App;
