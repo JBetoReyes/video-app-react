@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
+import { MyProps as CarouselItemProps } from '../components/CarouselItem';
 
-interface IMyState {
-    mylist: any[],
-    trends: any[],
-    originals: any[],
+export interface MyState {
+  [key: string]: CarouselItemProps[];
 }
 
 const useInitialState = (API: string) => {
-    const [videos, setVideos] = useState({} as IMyState);
-    useEffect(() => {
-      fetch(API)
-        .then(response => response.json())
-        .then(data => setVideos(data))
-    }, []);
-    return videos;
-}
+  const [videos, setVideos] = useState({} as MyState);
+  useEffect(() => {
+    fetch(API)
+      .then((response) => response.json())
+      .then((data) => setVideos(data));
+  }, []);
+  return videos;
+};
 
 export default useInitialState;

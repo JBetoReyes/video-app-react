@@ -36,6 +36,8 @@ module.exports = {
       },
     ],
     'prettier/prettier': 'error',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'react/static-property-placement': ['warn', 'property assignment'],
     'react/jsx-filename-extension': [
       1,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
