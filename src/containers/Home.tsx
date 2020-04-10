@@ -2,14 +2,15 @@ import React from 'react';
 import Header from '../components/Header';
 import Search from '../components/Search';
 import Carousel from '../components/Carousel';
+import Categories from '../components/Categories';
+import Footer from '../components/Footer';
 import CarouselItem, {
   MyProps as CarouselItemProps,
 } from '../components/CarouselItem';
-import Categories from '../components/Categories';
-import Footer from '../components/Footer';
 import useInitialState, {
   MyState as HomeState,
 } from '../hooks/useInitialState';
+import '../assets/styles/containers/Home.scss';
 
 const API = 'http://192.168.1.70:3000/initialState';
 
@@ -30,7 +31,7 @@ const renderList = (data: HomeState, keyName: string) => {
     ))
   );
 };
-const App = () => {
+const Home = () => {
   const videos = useInitialState(API);
   return (
     <div className="App">
@@ -54,4 +55,4 @@ const App = () => {
 
 type Categories = { [key: string]: [] };
 
-export default App;
+export default Home;
