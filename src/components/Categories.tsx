@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ICommonProps } from '../typings/Components';
+import { CommonProps } from '../typings/Components';
 import '../assets/styles/components/Categories.scss';
 
-export interface MyProps extends ICommonProps {
+export interface MyProps extends CommonProps {
   title: string;
 }
 
