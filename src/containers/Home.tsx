@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import Categories from '../components/Categories';
-import CarouselItem, {
-  MyData as CarouselItemProps,
-} from '../components/CarouselItem';
-import { MyState as HomeState } from '../hooks/useInitialState';
+import { CarouselItemState, HomeState } from '../typings/Containers/Home';
+import CarouselItem from '../components/CarouselItem';
 import '../assets/styles/containers/Home.scss';
 
-const renderList = (data: CarouselItemProps[]) => {
+const renderList = (data: CarouselItemState[]) => {
   return data.map(
     ({
       id,
@@ -19,7 +17,7 @@ const renderList = (data: CarouselItemProps[]) => {
       source,
       cover,
       year,
-    }: CarouselItemProps) => (
+    }: CarouselItemState) => (
       <CarouselItem
         id={id}
         key={id}
