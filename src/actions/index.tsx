@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const setFavoriteType = 'SET_FAVORITE';
+export type carouselItemActionType = 'SET_FAVORITE' | 'DELETE_FAVORITE';
 
 export const setFavorite = (payload: any) => ({
-  type: setFavoriteType,
+  type: 'SET_FAVORITE',
+  payload,
+});
+
+export const deleteFavorite = (payload: number) => ({
+  type: 'DELETE_FAVORITE',
   payload,
 });

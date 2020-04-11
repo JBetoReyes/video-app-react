@@ -21,6 +21,7 @@ const renderList = (data: CarouselItemProps[]) => {
       year,
     }: CarouselItemProps) => (
       <CarouselItem
+        id={id}
         key={id}
         title={title}
         contentRating={contentRating}
