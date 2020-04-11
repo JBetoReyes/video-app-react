@@ -1,28 +1,41 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setFavorite } from '../actions';
 import playIcon from '../assets/static/play-icon.png';
 import plusIcon from '../assets/static/plus-icon.png';
 import '../assets/styles/components/CarouselItem.scss';
 
-export interface MyProps {
+export interface MyData {
   id?: number;
   title: string;
   contentRating: string;
   duration: number;
-  source: string;
+  source?: string;
   cover: string;
   year: number;
 }
 
-const CarouselItem = ({
-  title,
-  cover,
-  year,
-  contentRating,
-  duration,
-}: MyProps) => {
+interface MyProps extends MyData {
+  setFavorite?: (payload: MyData) => { type: string; payload: any };
+}
+
+const CarouselItem = (props: MyProps) => {
+  const { title, cover, year, contentRating, duration } = props;
+  const handleSetFavorite = () => {
+    if (props.setFavorite) {
+      props.setFavorite({
+        cover,
+        title,
+        year,
+        contentRating,
+        duration,
+      });
+    }
+  };
   return (
-    <div className="carousel-item">
+    <div className="carousel-item" role="menu">
       <img className="carousel-item__img" src={cover} alt="" />
       <div className="carousel-item__details">
         <div>
@@ -35,6 +48,8 @@ const CarouselItem = ({
             className="carousel-item__details--img"
             src={plusIcon}
             alt="Plus Icon"
+            onClick={handleSetFavorite}
+            onKeyDown={handleSetFavorite}
           />
         </div>
         <p className="carousel-item__details--title">{title}</p>
@@ -54,4 +69,8 @@ CarouselItem.propTypes = {
   year: PropTypes.number.isRequired,
 };
 
-export default CarouselItem;
+const mapDispatchToProps = {
+  setFavorite,
+};
+
+export default connect<{}, {}, MyData>(null, mapDispatchToProps)(CarouselItem);

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MyProps as CarouselItemProps } from '../components/CarouselItem';
+import { MyData as CarouselItemProps } from '../components/CarouselItem';
 
 export interface MyState {
   [key: string]: CarouselItemProps[];

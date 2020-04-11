@@ -4,7 +4,7 @@ import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import Categories from '../components/Categories';
 import CarouselItem, {
-  MyProps as CarouselItemProps,
+  MyData as CarouselItemProps,
 } from '../components/CarouselItem';
 import { MyState as HomeState } from '../hooks/useInitialState';
 import '../assets/styles/containers/Home.scss';
