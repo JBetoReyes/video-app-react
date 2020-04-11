@@ -1,49 +1,49 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import Categories from '../components/Categories';
 import CarouselItem, {
   MyProps as CarouselItemProps,
 } from '../components/CarouselItem';
-import useInitialState, {
-  MyState as HomeState,
-} from '../hooks/useInitialState';
+import { MyState as HomeState } from '../hooks/useInitialState';
 import '../assets/styles/containers/Home.scss';
 
-const API = 'http://192.168.1.70:3000/initialState';
-
-const renderList = (data: HomeState, keyName: string) => {
-  return (
-    data[keyName] &&
-    data[keyName].length &&
-    data[keyName].map((entity: CarouselItemProps) => (
+const renderList = (data: CarouselItemProps[]) => {
+  return data.map(
+    ({
+      id,
+      title,
+      contentRating,
+      duration,
+      source,
+      cover,
+      year,
+    }: CarouselItemProps) => (
       <CarouselItem
-        key={entity.id}
-        title={entity.title}
-        contentRating={entity.contentRating}
-        duration={entity.duration}
-        source={entity.source}
-        cover={entity.cover}
-        year={entity.year}
+        key={id}
+        title={title}
+        contentRating={contentRating}
+        duration={duration}
+        source={source}
+        cover={cover}
+        year={year}
       />
-    ))
+    )
   );
 };
-const Home = () => {
-  const videos = useInitialState(API);
+const Home = ({ mylist, trends, originals }: HomeState) => {
   return (
     <>
       <Search />
-      {videos.mylist && videos.mylist.length && (
-        <Categories title="My List">
-          <Carousel>{renderList(videos, 'mylist')}</Carousel>
-        </Categories>
-      )}
+      <Categories title="My List">
+        <Carousel>{renderList(mylist)}</Carousel>
+      </Categories>
       <Categories title="Tendencies">
-        <Carousel>{renderList(videos, 'trends')}</Carousel>
+        <Carousel>{renderList(trends)}</Carousel>
       </Categories>
       <Categories title="Originals">
-        <Carousel>{renderList(videos, 'originals')}</Carousel>
+        <Carousel>{renderList(originals)}</Carousel>
       </Categories>
     </>
   );
@@ -51,4 +51,10 @@ const Home = () => {
 
 type Categories = { [key: string]: [] };
 
-export default Home;
+const mapStateToProps = (state: HomeState) => ({
+  mylist: state.mylist,
+  trends: state.trends,
+  originals: state.originals,
+});
+
+export default connect(mapStateToProps, null)(Home);
