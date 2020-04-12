@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type HomeActionsType = 'SET_FAVORITE' | 'DELETE_FAVORITE';
-export type AppActionsType = HomeActionsType;
-export function typedAction<T extends AppActionsType>(type: T): { type: T };
-export function typedAction<T extends AppActionsType, P>(
+export type HomeActionType = 'SET_FAVORITE' | 'DELETE_FAVORITE';
+export type AuthActionsType = 'LOGIN' | 'LOGOUT';
+export type AppActionType = HomeActionType | AuthActionsType;
+export function typedAction<T extends AppActionType>(type: T): { type: T };
+export function typedAction<T extends AppActionType, P>(
   type: T,
   payload: P
 ): { type: T; payload: P };
-export function typedAction(type: AppActionsType, payload?: any) {
+export function typedAction(type: AppActionType, payload?: any) {
   return { type, payload };
 }

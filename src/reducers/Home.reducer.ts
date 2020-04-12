@@ -7,7 +7,10 @@ const initial = {
   trends: [],
 };
 
-export default (state: HomeState = initial, action: HomeReduxAction): HomeState => {
+export default (
+  state: HomeState = initial,
+  action: HomeReduxAction
+): HomeState => {
   switch (action.type) {
     case 'SET_FAVORITE': {
       const carouselItem = state.mylist.find(

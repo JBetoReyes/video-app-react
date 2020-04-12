@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Search from '../components/Search';
 import Carousel from '../components/Carousel';
 import Categories from '../components/Categories';
-import { CarouselItemState, HomeState } from '../typings/Containers/Home';
+import { CarouselItemState, HomeState } from '../typings/Containers/Home.d';
 import CarouselItem from '../components/CarouselItem';
 import '../assets/styles/containers/Home.scss';
 import { AppState } from '../reducers';
