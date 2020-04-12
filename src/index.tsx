@@ -7,6 +7,7 @@ import reducer from './reducers';
 
 const initialState = {
   home: {
+    filterBy: '',
     mylist: [],
     trends: [
       {

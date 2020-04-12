@@ -5,6 +5,7 @@ const initial = {
   mylist: [],
   originals: [],
   trends: [],
+  filterBy: '',
 };
 
 export default (
@@ -28,6 +29,11 @@ export default (
       return {
         ...state,
         mylist: state.mylist.filter(({ id }) => id !== action.payload),
+      };
+    case 'FILTER':
+      return {
+        ...state,
+        filterBy: action.payload,
       };
     default:
       return state;

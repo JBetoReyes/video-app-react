@@ -13,4 +13,5 @@ export interface HomeState {
   mylist: CarouselItemState[];
   trends: CarouselItemState[];
   originals: CarouselItemState[];
+  filterBy: string;
 }

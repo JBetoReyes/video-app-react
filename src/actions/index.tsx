@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type HomeActionType = 'SET_FAVORITE' | 'DELETE_FAVORITE';
+export type HomeActionType = 'SET_FAVORITE' | 'DELETE_FAVORITE' | 'FILTER';
 export type AuthActionsType = 'LOGIN' | 'LOGOUT' | 'REGISTER';
 export type AppActionType = HomeActionType | AuthActionsType;
 export function typedAction<T extends AppActionType>(type: T): { type: T };

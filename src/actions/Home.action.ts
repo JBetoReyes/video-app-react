@@ -9,6 +9,10 @@ export const deleteFavorite = (payload: number) => {
   return typedAction('DELETE_FAVORITE', payload);
 };
 
+export const filterItems = (payload: string) => {
+  return typedAction('FILTER', payload);
+};
+
 export type HomeReduxAction = ReturnType<
-  typeof setFavorite | typeof deleteFavorite
+  typeof setFavorite | typeof deleteFavorite | typeof filterItems
 >;
