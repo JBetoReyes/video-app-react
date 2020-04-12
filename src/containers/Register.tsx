@@ -69,6 +69,7 @@ const Register = (props: OwnProps) => {
             type="password"
             className="input"
             placeholder="Password"
+            name="password"
             onChange={(e) => handleInput(e, form, setForm)}
           />
           <button className="button" type="submit">
