@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import playIcon from '../assets/static/play-icon.png';
 import plusIcon from '../assets/static/plus-icon.png';
@@ -8,17 +9,20 @@ import deleteIcon from '../assets/static/delete-icon.png';
 import { CarouselItemState } from '../typings/Containers/Home.d';
 import { setFavorite, deleteFavorite } from '../actions/Home.action';
 import '../assets/styles/components/CarouselItem.scss';
+import { AppState } from '../reducers';
 
 const mapDispatchToProps = {
   setFavorite,
   deleteFavorite,
 };
 
+type DispatchToPropsType = typeof mapDispatchToProps;
+
 interface OwnProps {
   isList: boolean;
 }
 
-type Props = typeof mapDispatchToProps & CarouselItemState & OwnProps;
+type Props = DispatchToPropsType & CarouselItemState & OwnProps;
 
 const handleSetFavorite = (props: Props) => {
   props.setFavorite({
@@ -35,19 +39,21 @@ const handleDeleteFavorite = (props: Props) => {
   props.deleteFavorite(props.id);
 };
 
-const CarouselItem = (props: CarouselItemState & OwnProps) => {
-  const { title, cover, year, contentRating, duration, isList } = props;
+const CarouselItem = (props: Props) => {
+  const { id, title, cover, year, contentRating, duration, isList } = props;
 
   return (
     <div className="carousel-item" role="menu">
       <img className="carousel-item__img" src={cover} alt="" />
       <div className="carousel-item__details">
         <div>
-          <img
-            className="carousel-item__details--img"
-            src={playIcon}
-            alt="Play Icon"
-          />
+          <Link to={`/player/${id}`}>
+            <img
+              className="carousel-item__details--img"
+              src={playIcon}
+              alt="Play Icon"
+            />
+          </Link>
           {!isList ? (
             <img
               className="carousel-item__details--img"
@@ -83,7 +89,7 @@ CarouselItem.propTypes = {
   year: PropTypes.number.isRequired,
 };
 
-export default connect<{}, {}, CarouselItemState>(
+export default connect<{}, DispatchToPropsType, OwnProps, AppState>(
   null,
   mapDispatchToProps
 )(CarouselItem);
