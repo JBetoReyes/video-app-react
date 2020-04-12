@@ -6,8 +6,9 @@ import Categories from '../components/Categories';
 import { CarouselItemState, HomeState } from '../typings/Containers/Home';
 import CarouselItem from '../components/CarouselItem';
 import '../assets/styles/containers/Home.scss';
+import { AppState } from '../reducers';
 
-const renderList = (data: CarouselItemState[]) => {
+const renderList = (data: CarouselItemState[], isList = false) => {
   return data.map(
     ({
       id,
@@ -27,6 +28,7 @@ const renderList = (data: CarouselItemState[]) => {
         source={source}
         cover={cover}
         year={year}
+        isList={isList}
       />
     )
   );
@@ -36,7 +38,7 @@ const Home = ({ mylist, trends, originals }: HomeState) => {
     <>
       <Search />
       <Categories title="My List">
-        <Carousel>{renderList(mylist)}</Carousel>
+        <Carousel>{renderList(mylist, true)}</Carousel>
       </Categories>
       <Categories title="Tendencies">
         <Carousel>{renderList(trends)}</Carousel>
@@ -50,10 +52,9 @@ const Home = ({ mylist, trends, originals }: HomeState) => {
 
 type Categories = { [key: string]: [] };
 
-const mapStateToProps = (state: HomeState) => ({
-  mylist: state.mylist,
-  trends: state.trends,
-  originals: state.originals,
+const mapStateToProps = ({ home }: AppState) => ({
+  mylist: home.mylist,
+  trends: home.trends,
+  originals: home.originals,
 });
-
 export default connect(mapStateToProps, null)(Home);

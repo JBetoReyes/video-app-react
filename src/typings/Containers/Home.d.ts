@@ -6,8 +6,11 @@ export interface CarouselItemState {
   source?: string;
   cover: string;
   year: number;
+  slug?: string;
 }
 
 export interface HomeState {
-  [key: string]: CarouselItemState[];
+  mylist: CarouselItemState[];
+  trends: CarouselItemState[];
+  originals: CarouselItemState[];
 }

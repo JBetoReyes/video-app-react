@@ -1,21 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case 'SET_FAVORITE':
-      return {
-        ...state,
-        mylist: [...state.mylist, action.payload],
-      };
-    case 'DELETE_FAVORITE':
-      return {
-        ...state,
-        mylist: (state.mylist as any[]).filter(
-          ({ id }) => id !== (action.payload as number)
-        ),
-      };
-    default:
-      return state;
-  }
-};
+import { combineReducers } from 'redux';
+import homeReducer from './Home.reducer';
+import { HomeState } from '../typings/Containers/Home.d';
+import { HomeReduxAction } from '../actions/Home.action';
 
-export default reducer;
+export interface AppState {
+  home: HomeState;
+}
+
+type AppReduxAction = HomeReduxAction;
+
+export default combineReducers<AppState, AppReduxAction>({ home: homeReducer });
