@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 import App from './routes/App';
 import reducer from './reducers';
 
@@ -170,8 +170,10 @@ const initialState = {
     ],
   },
 };
-
-const store = createStore(reducer, initialState);
+const composeEnhancer =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, initialState, composeEnhancer());
 if (module.hot) {
   module.hot.accept();
 }
